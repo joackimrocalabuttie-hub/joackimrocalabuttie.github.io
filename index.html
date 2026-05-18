@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joackim ROCA-LABUTTIE | Portfolio</title>
+  <style>
+    :root {
+      --accent: #60a5fa;
+      --accent-glow: rgba(96, 165, 250, 0.4);
+      --bg: #0b0f1a;
+      --text: #f8fafc;
+      --glass: rgba(255, 255, 255, 0.02);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+      background-image: radial-gradient(circle at 0% 0%, #1e293b 0%, transparent 50%),
+                        radial-gradient(circle at 100% 100%, #1e293b 0%, transparent 50%);
+    }
+
+    /* Navigation - Conservé à l'identique */
+    nav {
+      position: fixed; top: 0; width: 100%; padding: 25px 60px;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(11, 15, 26, 0.85); backdrop-filter: blur(15px);
+      z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .nav-links a { 
+      text-decoration: none; color: var(--text); font-weight: 500; margin-left: 35px;
+      opacity: 0.6; transition: 0.4s; position: relative;
+    }
+    .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--accent); }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+      background: var(--accent); transition: 0.3s;
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* Hero Section - Conservé à l'identique */
+    .hero {
+      height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: 0 10%; gap: 80px;
+      position: relative;
+      z-index: 1; /* Pour rester au dessus des particules */
+    }
+    .hero-text { flex: 1; opacity: 0; transform: translateX(-50px); animation: fadeIn 1s forwards; }
+    .hero-text h1 { font-size: 4.5rem; line-height: 1.1; margin-bottom: 25px; font-weight: 900; }
+    .hero-text span { 
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-text p { font-size: 1.4rem; color: #94a3b8; line-height: 1.6; }
+
+    .image-box { 
+      flex: 1; position: relative; display: flex; justify-content: center;
+      opacity: 0; transform: translateX(50px); animation: fadeIn 1s forwards 0.3s;
+    }
+    .profile-img {
+      width: 450px; height: 450px; object-fit: cover;
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      box-shadow: 0 0 80px var(--accent-glow);
+      animation: morphing 10s infinite alternate ease-in-out;
+      border: 1px solid var(--accent);
+    }
+
+    @keyframes fadeIn { to { opacity: 1; transform: translate(0); } }
+    @keyframes morphing {
+      0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+      100% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+    }
+
+    /* Conteneur des particules */
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fond dynamique -->
+  <div id="particles-js"></div>
+
+  <nav>
+    <div class="logo"><img src="logo.png" height="50"></div>
+    <div class="nav-links">
+      <a href="index.html" class="active">Présentation</a>
+      <a href="apropos.html">À propos</a>
+      <a href="projet.html">Projets</a>
+      <a href="bilan.html">Bilan</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Je suis <br><span>Joackim ROCA-LABUTTIE</span></h1>
+      <p>Étudiant en BUT2 Sciences des Données à l'IUT Niort. Explorateur de données, spécialisé en modélisation et analyse statistique.</p>
+    </div>
+    <div class="image-box">
+      <img src="tete.jfif" class="profile-img">
+    </div>
+  </section>
+
+  <!-- Script Particles.js -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 70, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": "#60a5fa" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.4, "random": true },
+        "size": { "value": 2, "random": true },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#60a5fa",
+          "opacity": 0.2,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 1.5,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "grab" },
+          "onclick": { "enable": true, "mode": "push" },
+          "resize": true
+        },
+        "modes": {
+          "grab": { "distance": 180, "line_linked": { "opacity": 0.4 } }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
+</body>
+</html>
